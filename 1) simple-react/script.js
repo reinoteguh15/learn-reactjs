@@ -51,6 +51,7 @@ function HomePage() {
                 ))
                 }
             </ul>
+            <h2>Simple Counter</h2>
             <Button text={'-'} onClick={decrement} counter={counter}/>
             <Counter counter={counter}/>
             <Button text={'+'} onClick={increment} counter={counter}/>
