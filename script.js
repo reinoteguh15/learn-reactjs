@@ -5,15 +5,21 @@ function Header({name}) {
     return (<h1>Let's Learn React with {name ? name : 'me'} 🚀</h1>);
 }
 
-function Button({text, onClick}) {
+function Button({text, onClick, counter}) {
+    const buttonDisabled = (text !== 'Reset') ? ((counter > 9 || counter < 0) ? true : false) : ((counter > 9 || counter < 0) ? false : true);
     const buttonStyle = (text !== 'Reset') ? {} : {margin: '10px 20px', display: 'block'};
 
     return (
-        <button onClick={onClick} style={buttonStyle}>{text}</button>
+        <button onClick={onClick} style={buttonStyle} disabled={buttonDisabled}>
+            {text}
+        </button>
     );
 }
 
 function Counter({counter}) {
+    if (counter > 9 || counter < 0) {
+        counter = 'Done!';
+    }
     return (
         <span style={{margin: 20}}>{counter}</span>
     )
@@ -45,10 +51,10 @@ function HomePage() {
                 ))
                 }
             </ul>
-            <Button text={'-'} onClick={decrement}/>
+            <Button text={'-'} onClick={decrement} counter={counter}/>
             <Counter counter={counter}/>
-            <Button text={'+'} onClick={increment}/>
-            <Button text={'Reset'} onClick={reset}/>
+            <Button text={'+'} onClick={increment} counter={counter}/>
+            <Button text={'Reset'} onClick={reset} counter={counter}/>
         </>
     );
 }
